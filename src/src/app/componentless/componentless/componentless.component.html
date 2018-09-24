@@ -1,0 +1,29 @@
+<h1>
+	This is a Componentless root route
+</h1>
+
+<p>You won't be able to get a secondary router outlet to work in here</p>
+<p>Go ahead and try</p>
+
+<a [routerLink]="[{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Componentless Routing Goes to ROOT Secondary Router Outlet But Can Only Be Cleared in Secondary Route</a>
+<br>
+<a [routerLink]="['/componentless/',{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Componentless path Goes to ROOT Secondary Router Outlet But Can Only Be Cleared in Secondary Route</a>
+<br>
+<button [routerLink]="[{ outlets: { 'my-secondary-router-outlet': null } }]">CLEAR COMPONENTLESS SECONDARY ROUTES</button>
+<br>
+
+<a [routerLink]="['',{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Empty Goes to ROOT and must be cleared in ROOT</a>
+<br>
+<a [routerLink]="['/',{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Slash Path Goes to ROOT and must be cleared in ROOT</a>
+<br>
+<button [routerLink]="['/',{ outlets: { 'my-secondary-router-outlet': null } }]">CLEAR ROOT SECONDARY ROUTES</button>
+<br>
+
+<p>
+	NOTE: If you try to activate the /componentless secondary outlet, then (without clearing the secondary route) you activate
+	the root secondary outlet, you will error with "Cannot activate an already activated outlet RouterOutlet"
+</p>
+<div style="border-style: solid;border-color: coral;">
+	<h3>COMPONENTLESS COMPONENT - Secondary Router Content Should Display Here</h3>
+	<router-outlet name="my-secondary-router-outlet"></router-outlet>
+</div>

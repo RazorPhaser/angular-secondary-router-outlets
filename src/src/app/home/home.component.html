@@ -1,0 +1,49 @@
+<h1>
+	A demonstration of Secondary (Named) router outlets and some gotcha's.
+</h1>
+
+<h2>Secondary Router Outlets:</h2>
+<ul>
+	<li>
+		<p>Must be resolved at the module where they are being used</p>
+	</li>
+	<li>
+		<p>Must NOT be part of a route configuration that uses a componentless element</p>
+	</li>
+	<li>
+		<p>Declaring paths may help to resolve the route to the component, BUT the named router-outlet will only be populated at the
+			same level in the heirachy in which it is resolved.</p>
+	</li>
+</ul>
+
+<h3>Home Path Example</h3>
+
+<a [routerLink]="[{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Show /home Secondary Router Content (works in /home) - no parent</a>
+<br>
+
+<a [routerLink]="['/home',{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Show /home Secondary Router Content (works in /home) - /home parent</a>
+<br>
+
+<button [routerLink]="['/home',{ outlets: { 'my-secondary-router-outlet': null } }]">CLEAR HOME SECONDARY ROUTES</button>
+
+<h3>Root Path Example</h3>
+
+<p>
+	This is tricky because if you look at the URL in the search bar, there is no difference
+</p>
+<a [routerLink]="['/',{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Show Secondary Router Content (doesn't work in /home)</a>
+<br>
+
+<a [routerLink]="['',{ outlets: { 'my-secondary-router-outlet': ['my-secondary-content'] } }]">Using an empty path results in root (doesn't work in /home)</a>
+<br>
+<button [routerLink]="['/',{ outlets: { 'my-secondary-router-outlet': null } }]">CLEAR ROOT SECONDARY ROUTES</button>
+<br>
+
+<div style="border-style: solid;border-color: coral;">
+	<h3>HOME COMPONENT - Secondary Router Content Should Display Here</h3>
+	<router-outlet name="my-secondary-router-outlet"></router-outlet>
+</div>
+
+<h3>Componentless Route Issue</h3>
+<a [routerLink]="['/componentless']">Check out a componentless route</a>
+<br>

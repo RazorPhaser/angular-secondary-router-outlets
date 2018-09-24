@@ -1,0 +1,15 @@
+<a [routerLink]="['/home']">Home</a>
+<br>
+<h3>
+	Current Route: {{route}}
+</h3>
+
+<router-outlet></router-outlet>
+
+
+<div style="border-style: solid;border-color: coral;">
+	<h3>ROOT COMPONENT - Secondary Router Content Should Display Here</h3>
+	<router-outlet name="my-secondary-router-outlet"></router-outlet>
+</div>
+
+Luke Taylor
